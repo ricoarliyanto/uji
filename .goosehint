@@ -1,0 +1,119 @@
+# .goosehint - Anti-Hallucination & Anti-Stupidity Boundaries
+
+## 🔴 LARANG KERAS (NEVER)
+
+### 1. Anti-Hallusinasi
+- JANGAN membuat library, tool, atau dependency yang TIDAK ADA
+- JANGAN mengarang API, method, atau parameter yang tidak ada di dokumentasi
+- JANGAN membuat mock/test data dengan nilai yang tidak masuk akal
+- JANGAN menebak signature fungsi tanpa verifikasi
+- JANGAN membuat kode yang "mungkin bekerja" tanpa test
+
+### 2. Anti-Bodoh
+- JANGAN ignore error dari library external
+- JANGAN asumsikan library version tertentu tanpa cek Cargo.toml
+- JANGAN skip test karena "akan saya tambahkan nanti"
+- JANGAN buat code tanpa dokumentasi
+- JANGAN gunakan pattern yang deprecated
+
+### 3. Anti-Rewrite Code
+- JANGAN rewrite kode yang sudah ada kecuali diminta
+- JANGAN mengubah working code tanpa konfirmasi
+- JANGAN restructure project tanpa alasan valid
+- JANGAN hapus fitur yang sudah ada
+
+## 🟢 WAJIB (ALWAYS)
+
+### 1. Verifikasi
+- Selalu cek dokumentasi library sebelum menggunakan
+- Selalu baca source code jika library tidak terdokumentasi dengan baik
+- Selalu run test sebelum mengklaim fitur selesai
+- Selalu check error message jika code error
+
+### 2. Dokumentasi
+- Setiap fungsi harus ada doc comment
+- Setiap module harus ada README atau documentation
+- API harus didokumentasikan lengkap
+- Contoh penggunaan harus ada
+
+### 3. Test
+- Setiap fitur baru harus ada test sebelum implementasi
+- Test harus cover edge cases
+- Test harus deterministic
+- Coverage target: > 90%
+
+### 4. Code Quality
+- Gunakan clippy untuk linting
+- Gunakan fmt untuk formatting
+- Jangan pakai TODO tanpa rencana
+- Komentar harus jelas, jangan redundant
+
+## 🟡 BATASAN (CONSTRAINTS)
+
+### 1. Library Selection
+- Hanya gunakan library yang ada di crates.io
+- Prioritaskan library stabil (minimal 1.0.0)
+- Cek license sebelum menggunakan
+- Cek security audit jika tersedia
+
+### 2. Architecture
+- Ikuti PRD di folder yang sama
+- Jangan deviasi dari desain tanpa diskusi
+- Pertahain separation of concerns
+- Pertahain SOLID principles
+
+### 3. Performance
+- Jangan optimize tanpa benchmark
+- Jangan pakai macro yang tidak perlu
+- Jangan pakai unsafe tanpa alasan valid
+- Gunakan profiling untuk optimize
+
+## 📋 CHECKLIST SEBELUM DELIVER
+
+- [ ] Semua test passing
+- [ ] Coverage > 90%
+- [ ] Clippy clean
+- [ ] Dokumentasi lengkap
+- [ ] Error handling lengkap
+- [ ] Tidak ada TODO tanpa rencana
+- [ ] Tidak ada hardcoded value (kecuali config)
+- [ ] Tidak ada panic yang tidak handle
+- [ ] Log message jelas dan informatif
+- [ ] Tidak ada dependency yang tidak perlu
+
+## ⚠️ KETIKA MENDAPAT ERROR
+
+1. JANGAN langsung rewrite code
+2. JANGAN ignore error
+3. Baca error message lengkap
+4. Cek dokumentasi library
+5. Cek source code jika perlu
+6. Buat test untuk reproduce error
+7. Fix dengan benar, bukan cepat
+
+## 📝 ATURAN KHUSUS RUST
+
+### Memory Safety
+- JANGAN gunakan unsafe tanpa alasan valid
+- JANGAN skip borrow checker
+- JANGAN gunakan raw pointers tanpa perlu
+- Pastikan tidak ada data race
+
+### Error Handling
+- JANGAN unwrap() tanpa handle error
+- JANGAN ignore Result/Option
+- Gunakan thiserror atau anyhow jika perlu
+- Pastikan error message informatif
+
+### Testing
+- JANGAN test yang skip
+- JANGAN test yang hard-code value tanpa parameter
+- JANGAN test yang bergantung pada external service tanpa mock
+- Gunakan integration test untuk full flow
+- Gunakan unit test untuk single function
+
+### Dependency
+- JANGAN tambah dependency tanpa alasan valid
+- JANGAN upgrade major version tanpa test
+- JANGAN gunakan dev dependency di production code
+- Cek Cargo.lock setelah setiap perubahan
